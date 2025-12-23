@@ -1,0 +1,1 @@
+Home on Rent is a practice-based web application built to improve understanding of Node.js and Express.js. The project focuses on learning backend fundamentals such as routing, middleware, and basic application structure while simulating a rental property platform.

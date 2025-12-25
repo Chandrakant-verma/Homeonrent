@@ -3,11 +3,13 @@ const router = express.Router();
 const path = require('path');
 const rootDir = require('../utils/rotdir');
 
-console.log(__dirname, "ho gaya");
+const {registeredHome} = require('./host_router');
 
 router.get('/', (req, res, next)=>{
-    console.log(req.body);
-    res.sendFile(path.join(rootDir, 'views', 'user_home.html'));
+    
+    console.log('Registered Homes: ', registeredHome);
+    res.render('user_home', { registeredHome: registeredHome  });
+    
 })
 
 module.exports = { userRouter : router};

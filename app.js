@@ -10,7 +10,12 @@ const rootDir = require('./utils/rotdir');
 const app = express();
 
 app.set('view engine', 'ejs');
-app.set('views', 'views');
+app.set('views', [
+  path.join(rootDir, 'views', 'store'),
+  path.join(rootDir, 'views', 'admin'),
+  path.join(rootDir, 'views')
+]);
+
 
 app.use(bodyParser.urlencoded());
 

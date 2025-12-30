@@ -4,6 +4,8 @@ const rootDir = require('../utils/rotdir');
 
 class Home{
 
+    
+
     constructor(home){
        this.home = home;
     }
@@ -18,6 +20,8 @@ class Home{
   } catch (err) {
     homes = [];
   }
+
+  this.home.id = homes.length + 1;
 
   homes.push(this.home);
   await fs.promises.writeFile(filePath, JSON.stringify(homes));

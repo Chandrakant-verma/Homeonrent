@@ -15,7 +15,7 @@
         <ul>
            <% if (registeredHome && registeredHome.length > 0) { %>
                    <% registeredHome.forEach(element => { %>
-                  <li><%= element.name %>, <%= element.price %></li>
+                  <li><%= element.name %>, <%= element.price %> <a href = '/user/<%= element.id %>'>details</a></li>
            <% }); %>
            <% } else { %>
                   <li>No homes rented yet</li>

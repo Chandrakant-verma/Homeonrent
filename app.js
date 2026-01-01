@@ -9,13 +9,14 @@ const rootDir = require('./utils/rotdir');
 
 const app = express();
 
+
 app.set('view engine', 'ejs');
 app.set('views', [
   path.join(rootDir, 'views', 'store'),
   path.join(rootDir, 'views', 'admin'),
   path.join(rootDir, 'views')
 ]);
-
+ 
 
 app.use(bodyParser.urlencoded());
 
@@ -37,6 +38,11 @@ app.use('/', (req, res, next)=>{
 })
 
 
-app.listen(3000, ()=>{
-    console.log('Server is running on port 3000');
-})
+// mongoConnect( client => {
+//     console.log('client is : ', client);
+    app.listen(3000, ()=> {
+        console.log('server listening on port 3000');
+    });  
+// })
+
+

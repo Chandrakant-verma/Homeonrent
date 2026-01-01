@@ -1,42 +1,28 @@
-const fs = require('fs');
-const path = require('path');
-const rootDir = require('../utils/rotdir');
+const db = require('../utils/mysql_wala_database');
 
-class Home{
+class Home {
 
-    
-
-    constructor(home){
-       this.home = home;
-    }
-
-    save = async () => {
-  const filePath = path.join(rootDir, 'data', 'homes.json');
-
-  let homes = [];
-  try {
-    const data = await fs.promises.readFile(filePath, 'utf-8');
-    homes = JSON.parse(data);
-  } catch (err) {
-    homes = [];
+  constructor(home) {
+    this.home = home;
   }
 
-  this.home.id = homes.length + 1;
-
-  homes.push(this.home);
-  await fs.promises.writeFile(filePath, JSON.stringify(homes));
-};
-
-
-    get = () => {
+  save = async () => {
+    return await db.execute(
+      'INSERT INTO homes (name, location, description, area, price) VALUES (?, ?, ?, ?, ?)',
+      [
+        this.home.name ?? null,
+        this.home.location ?? null,
+        this.home.description ?? null,
+        this.home.area ?? null,
+        this.home.price ?? null,
         
-        const filePath = path.join( rootDir, 'data', 'homes.json' );
+      ]
+    );
+  };
 
-        const d = fs.readFileSync(filePath);
-
-        return JSON.parse(d);
-    }
-
+  static fetchAll = async () => {
+    return db.execute('SELECT * FROM homes');
+  }
 }
 
-module.exports = { Home: Home};
+module.exports = { Home };
